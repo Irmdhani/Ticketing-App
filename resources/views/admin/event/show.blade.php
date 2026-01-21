@@ -175,9 +175,9 @@
             </div>
         </div>
         <!-- Add Ticket Modal -->
-    <dialog id="add_ticket_modal" class="modal">
-        <form method="POST" action="{{ route('admin.tickets.store') }}" class="modal-box">
-            @csrf
+        <dialog id="add_ticket_modal" class="modal">
+            <form method="POST" action="{{ route('admin.tickets.store') }}" class="modal-box">
+                @csrf
 
             <h3 class="text-lg font-bold mb-4">Tambah Ticket</h3>
 
