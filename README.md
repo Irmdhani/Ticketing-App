@@ -25,7 +25,7 @@ git clone [https://github.com/username/ticketing-app.git](https://github.com/use
 cd ticketing-app
 ```
 
-2. Install Dependensi
+### 2. Install Dependensi
 
 
 Install library PHP (Laravel) dan library JavaScript (Tailwind/Vite).
@@ -38,7 +38,7 @@ composer install
 npm install
 ```
 
-3. Konfigurasi Environment (.env)
+### 3. Konfigurasi Environment (.env)
 
 Salin file konfigurasi contoh .env.example menjadi .env.
 
@@ -55,14 +55,14 @@ DB_DATABASE=ticketing_db
 DB_USERNAME=root
 DB_PASSWORD=
 ```
-4. Generate Application Key
+### 4. Generate Application Key
 
 Buat kunci enkripsi aplikasi Laravel.
 
 ```Bash
 php artisan key:generate
 ```
-5. Setup Database (Migrasi & Seeder)
+### 5. Setup Database (Migrasi & Seeder)
 
 Jalankan migrasi untuk membuat tabel-tabel di database (seperti tabel orders, payment_types, events) dan isi dengan data dummy awal.
 
@@ -72,14 +72,14 @@ php artisan migrate:fresh --seed
 ```
 Catatan: Project ini menggunakan Seeder (DatabaseSeeder) untuk mengisi data awal seperti User Admin, Event contoh, Tiket, dan Tipe Pembayaran.
 
-6. Link Storage (Penting untuk Gambar)
+### 6. Link Storage (Penting untuk Gambar)
 
 Aplikasi ini menyimpan gambar event di folder storage publik. Agar gambar bisa muncul di halaman depan, jalankan perintah ini:
 
 ```Bash
 php artisan storage:link
 ```
-7. Menjalankan Aplikasi
+### 7. Menjalankan Aplikasi
 
 Anda perlu menjalankan dua terminal terpisah agar aplikasi berjalan dengan tampilan yang benar (Laravel + Vite).
 
@@ -103,11 +103,8 @@ Email: admin@gmail.com
 Password: password
 ```
 
-Struktur Fitur
-Autentikasi: Login dan Register User (Breeze).
-
-Event: Melihat daftar dan detail event.
-
-Order: Pemesanan tiket dengan validasi stok.
-
-Payment: Pemilihan metode pembayaran saat checkout.
+## Struktur Fitur
+- Autentikasi: Login dan Register User (Breeze).
+- Event: Melihat daftar dan detail event.
+- Order: Pemesanan tiket dengan validasi stok.
+- Payment: Pemilihan metode pembayaran saat checkout.
