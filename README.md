@@ -54,8 +54,8 @@ DB_PORT=3306
 DB_DATABASE=ticketing_db
 DB_USERNAME=root
 DB_PASSWORD=
-4. Generate Application Key
 ```
+4. Generate Application Key
 
 Buat kunci enkripsi aplikasi Laravel.
 
