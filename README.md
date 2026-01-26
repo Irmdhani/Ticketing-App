@@ -1,59 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ticketing App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi pemesanan tiket event sederhana yang dibangun menggunakan **Laravel** dan **Tailwind CSS** (dengan DaisyUI).
 
-## About Laravel
+## Prasyarat Server (Requirements)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sebelum memulai, pastikan komputer Anda telah terinstal software berikut:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* [PHP](https://www.php.net/) >= 8.2
+* [Composer](https://getcomposer.org/)
+* [Node.js](https://nodejs.org/) & NPM
+* [MySQL](https://www.mysql.com/) atau MariaDB
+* Git
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Cara Instalasi & Menjalankan Project
 
-## Learning Laravel
+Ikuti langkah-langkah berikut untuk menginstal dan menjalankan aplikasi di komputer lokal Anda.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1. Clone Repository
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Unduh source code project ke komputer Anda.
 
-## Laravel Sponsors
+```bash
+git clone [https://github.com/username/ticketing-app.git](https://github.com/username/ticketing-app.git)
+cd ticketing-app
+2. Install Dependensi
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Install library PHP (Laravel) dan library JavaScript (Tailwind/Vite).
 
-### Premium Partners
+Bash
+# Install dependensi PHP
+```
+composer install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Install dependensi JavaScript/Node
+npm install
+3. Konfigurasi Environment (.env)
 
-## Contributing
+Salin file konfigurasi contoh .env.example menjadi .env.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```Bash
+cp .env.example .env
+```
+Buka file .env tersebut dengan text editor Anda, lalu sesuaikan konfigurasi database. Pastikan Anda sudah membuat database kosong di MySQL (misalnya bernama ticketing_db).
+```
+Ini, TOML
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ticketing_db
+DB_USERNAME=root
+DB_PASSWORD=
+4. Generate Application Key
+```
 
-## Code of Conduct
+Buat kunci enkripsi aplikasi Laravel.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```Bash
+php artisan key:generate
+```
+5. Setup Database (Migrasi & Seeder)
 
-## Security Vulnerabilities
+Jalankan migrasi untuk membuat tabel-tabel di database (seperti tabel orders, payment_types, events) dan isi dengan data dummy awal.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```Bash
+# Perintah ini akan menghapus tabel lama (jika ada) dan membuatnya ulang beserta data dummy
+php artisan migrate:fresh --seed
+```
+Catatan: Project ini menggunakan Seeder (DatabaseSeeder) untuk mengisi data awal seperti User Admin, Event contoh, Tiket, dan Tipe Pembayaran.
 
-## License
+6. Link Storage (Penting untuk Gambar)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aplikasi ini menyimpan gambar event di folder storage publik. Agar gambar bisa muncul di halaman depan, jalankan perintah ini:
+
+```Bash
+php artisan storage:link
+```
+7. Menjalankan Aplikasi
+
+Anda perlu menjalankan dua terminal terpisah agar aplikasi berjalan dengan tampilan yang benar (Laravel + Vite).
+
+Terminal 1 (Menjalankan Server Laravel):
+
+```Bash
+php artisan serve
+```
+Terminal 2 (Menjalankan Build Aset Frontend):
+
+```Bash
+npm run dev
+```
+Aplikasi sekarang dapat diakses melalui browser di: http://localhost:8000
+
+Akun Login (Default Seeder)
+Jika Anda menggunakan php artisan migrate:fresh --seed, akun default berikut biasanya tersedia (cek database/seeders/UserSeeder.php untuk memastikan):
+
+Email: admin@gmail.com
+
+Password: password
+
+Struktur Fitur
+Autentikasi: Login dan Register User (Breeze).
+
+Event: Melihat daftar dan detail event.
+
+Order: Pemesanan tiket dengan validasi stok.
+
+Payment: Pemilihan metode pembayaran saat checkout.
