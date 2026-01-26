@@ -23,28 +23,30 @@ Unduh source code project ke komputer Anda.
 ```bash
 git clone [https://github.com/username/ticketing-app.git](https://github.com/username/ticketing-app.git)
 cd ticketing-app
-2. Install Dependensi
 ```
+
+2. Install Dependensi
+
 
 Install library PHP (Laravel) dan library JavaScript (Tailwind/Vite).
 
-Bash
+```Bash
 # Install dependensi PHP
-```
 composer install
-```
 
 # Install dependensi JavaScript/Node
 npm install
+```
+
 3. Konfigurasi Environment (.env)
 
 Salin file konfigurasi contoh .env.example menjadi .env.
 
 ```Bash
 cp .env.example .env
-```
+
 Buka file .env tersebut dengan text editor Anda, lalu sesuaikan konfigurasi database. Pastikan Anda sudah membuat database kosong di MySQL (misalnya bernama ticketing_db).
-```
+
 Ini, TOML
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -90,7 +92,7 @@ Terminal 2 (Menjalankan Build Aset Frontend):
 
 ```Bash
 npm run dev
-```
+
 Aplikasi sekarang dapat diakses melalui browser di: http://localhost:8000
 
 Akun Login (Default Seeder)
@@ -99,6 +101,7 @@ Jika Anda menggunakan php artisan migrate:fresh --seed, akun default berikut bia
 Email: admin@gmail.com
 
 Password: password
+```
 
 Struktur Fitur
 Autentikasi: Login dan Register User (Breeze).
